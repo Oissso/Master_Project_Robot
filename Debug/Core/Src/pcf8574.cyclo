@@ -1,0 +1,6 @@
+../Core/Src/pcf8574.c:12:6:PCF8574_Init	1
+../Core/Src/pcf8574.c:20:6:PCF8574_WritePin	2
+../Core/Src/pcf8574.c:30:15:PCF8574_ReadPin	1
+../Core/Src/pcf8574.c:36:6:PCF8574_TogglePin	1
+../Core/Src/pcf8574.c:41:6:PCF8574_WritePort	1
+../Core/Src/pcf8574.c:46:9:PCF8574_ReadPort	1
