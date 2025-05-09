@@ -157,10 +157,19 @@ static SVCCTL_EvtAckStatus_t Custom_STM_Event_Handler(void *Event)
 		  }
 		  APP_DBG_MSG("\n");
 
+		  if (check_command(attribute_modified->Attr_Data)) {
+				printf(">> Command detected!\n");
+			} else {
+				printf(">> Command not detected!\n");
+			}
+
 		  if (BLE_ProcessCommand(attribute_modified->Attr_Data, attribute_modified->Attr_Data_Length))
 		          {
-		              APP_DBG_MSG(">> Action déclenchée suite à la commande 00 00 00 01\n");
-		          }
+		              printf(">> Action déclenchée suite à la commande\n");
+			} else {
+				printf(">> Aucune action déclenchée\n");
+			}
+
 
           /* USER CODE END EVT_BLUE_GATT_ATTRIBUTE_MODIFIED_END */
           break;

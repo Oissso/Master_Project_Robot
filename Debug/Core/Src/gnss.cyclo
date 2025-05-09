@@ -1,0 +1,8 @@
+../Core/Src/gnss.c:44:10:geoToUTM	4
+../Core/Src/gnss.c:87:8:distanceUTM	1
+../Core/Src/gnss.c:92:6:removeOutliers	6
+../Core/Src/gnss.c:112:8:perpendicularDistance	1
+../Core/Src/gnss.c:136:6:douglasPeucker	5
+../Core/Src/gnss.c:158:6:simplifyTrack	4
+../Core/Src/gnss.c:178:10:utmToGeo	3
+../Core/Src/gnss.c:220:6:processGNSS	4
