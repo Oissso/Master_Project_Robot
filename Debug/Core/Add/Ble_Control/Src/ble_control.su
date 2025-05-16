@@ -1,2 +1,2 @@
-../Core/Add/Ble_Control/Src/ble_control.c:9:6:check_command	16	static
-../Core/Add/Ble_Control/Src/ble_control.c:47:6:BLE_ProcessCommand	32	static
+../Core/Add/Ble_Control/Src/ble_control.c:12:6:check_command	16	static
+../Core/Add/Ble_Control/Src/ble_control.c:21:6:BLE_ProcessCommand	288	static

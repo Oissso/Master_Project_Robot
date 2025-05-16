@@ -22,6 +22,8 @@ RM := rm -rf
 -include Drivers/STM32WBxx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
+-include Core/Add/cJSON/Src/subdir.mk
+-include Core/Add/Motor_Control/Src/subdir.mk
 -include Core/Add/GPIO_Extender/Src/subdir.mk
 -include Core/Add/Ble_Control/Src/subdir.mk
 -include objects.mk

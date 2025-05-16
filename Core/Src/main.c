@@ -205,7 +205,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
     UTIL_SEQ_Run(UTIL_SEQ_DEFAULT);
 
-    scan_I2C_devices();
+//    scan_I2C_devices();
 
     HAL_Delay(1000);
 
@@ -477,7 +477,7 @@ static void MX_TIM1_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 50;
+  sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;

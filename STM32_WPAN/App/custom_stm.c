@@ -64,7 +64,7 @@ extern uint16_t Connection_Handle;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-uint16_t SizeMy_Char = 4;
+uint16_t SizeMy_Char = 512;
 
 /**
  * START of Section BLE_DRIVER_CONTEXT
@@ -306,7 +306,7 @@ void SVCCTL_InitCustomSvc(void)
                           ATTR_PERMISSION_NONE,
                           GATT_NOTIFY_ATTRIBUTE_WRITE,
                           0x10,
-                          CHAR_VALUE_LEN_CONSTANT,
+                          CHAR_VALUE_LEN_VARIABLE,
                           &(CustomContext.CustomMy_CharHdle));
   if (ret != BLE_STATUS_SUCCESS)
   {

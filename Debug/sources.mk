@@ -24,6 +24,8 @@ C_DEPS :=
 SUBDIRS := \
 Core/Add/Ble_Control/Src \
 Core/Add/GPIO_Extender/Src \
+Core/Add/Motor_Control/Src \
+Core/Add/cJSON/Src \
 Core/Src \
 Core/Startup \
 Drivers/STM32WBxx_HAL_Driver/Src \

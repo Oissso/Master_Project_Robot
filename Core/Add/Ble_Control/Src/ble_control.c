@@ -1,8 +1,11 @@
 #include "../Inc/ble_control.h"
 #include "../../GPIO_Extender/Inc/PCF_8574.h"
+#include "../../cJSON/Inc/cJSON.h"
+#include "../../Motor_Control/Inc/Motor_Control.h"
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 
 extern bool GPIO_EXTENDER_ProcessCommand(uint8_t *data);
 
@@ -13,54 +16,39 @@ bool check_command(uint8_t *data) {
 	return false;  // Commande invalide
 }
 
-//bool BLE_ProcessCommand(uint8_t *data, uint8_t length) {
-//    if (length < 2) return false;  // Vérifie que la commande a au moins 2 octets
-//
-//    // Extrait la commande et la valeur
-//    uint8_t command = data[0];
-//    uint8_t value = data[1];
-//
-//    // Vérifie si la commande correspond à un contrôle GPIO
-//    if (command == 0x01) {
-//        return GPIO_EXTENDER_ProcessCommand(&value);  // Envoie la valeur au PCF8574
-//    }
-//
-//    return false;
-//}
-
-//bool BLE_ProcessCommand(uint8_t *data, uint8_t length) {
-//    uint8_t command = data[0];
-//
-//    if (command == 0x01) {
-//            // On prépare un tableau de 3 octets à partir de data[1], data[2], data[3]
-//            uint8_t gpio_values[3];
-//            for (int i = 0; i < 3; i++) {
-//                gpio_values[i] = data[i + 1];
-//            }
-//
-//            // On envoie le tableau complet
-//            return GPIO_EXTENDER_ProcessCommand(gpio_values);
-//        }
-//    return false;
-//}
-
+// Fonction pour traiter la commande BLE
+// Format des données a envoyé : {"GPS_mode":0,"forward":0,"spine":0} de avancé de 50 à 100, reculé de 0 à 50
 bool BLE_ProcessCommand(uint8_t *data, uint8_t length) {
+    char json_string[256] = {0};
+    if (length >= sizeof(json_string)) return false;
+    memcpy(json_string, data, length);
+    json_string[length] = '\0';
 
-    uint8_t command = data[0];
-    uint8_t gpio_value = 0;
-    printf("GPIO Value: 0x%01X 0x%01X 0x%01X 0x%01X \r\n", data[0],data[1], data[2], data[3]);  // Hexa + décimal);
+    printf(">> JSON reçu : %s\r\n", json_string);
 
-    if (command == 0x01) {
-        for (int i = 0; i < 4; i++) {
-            gpio_value |= (data[i + 1] & 0x01) << i;  // bits 1 à 4
-            printf("GPIO Value: 0x%01X (%d)\r\n", gpio_value, gpio_value);  // Hexa + décimal
-        }
-
-        printf("GPIO Value: 0x%02X (%d)\r\n", gpio_value, gpio_value);  // Hexa + décimal
-
-        return GPIO_EXTENDER_ProcessCommand(&gpio_value);
+    // Parse le JSON
+    cJSON *root = cJSON_Parse(json_string);
+    if (root == NULL) {
+        printf("⚠️ JSON invalide\n");
+        return false;
     }
 
-    return false;
-}
+    // Extraction des champs moteurs
+    cJSON *forward = cJSON_GetObjectItem(root, "forward");
+    cJSON *spine = cJSON_GetObjectItem(root, "spine");
+    cJSON *GPS_mode = cJSON_GetObjectItem(root, "GPS_mode");
 
+    if (!cJSON_IsNumber(forward) || !cJSON_IsNumber(spine) || !cJSON_IsNumber(GPS_mode)) {
+        printf("⚠️ Un ou plusieurs champs ne sont pas des nombres\n");
+        cJSON_Delete(root);
+        return false;
+    }
+
+    printf("Moteurs : forward=%d, spine=%d, GPS_mode=%d\n",
+           forward->valueint, spine->valueint, GPS_mode->valueint);
+
+    cJSON_Delete(root);
+
+    motorTraduction(forward->valueint, spine->valueint);
+    return true;
+}
