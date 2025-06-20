@@ -1,1 +1,7 @@
-../Core/Add/Motor_Control/Src/Motor_Control.c:7:6:motorTraduction	9
+../Core/Add/Motor_Control/Src/Motor_Control.c:22:6:print_binary	2
+../Core/Add/Motor_Control/Src/Motor_Control.c:30:7:map_power_to_speed	1
+../Core/Add/Motor_Control/Src/Motor_Control.c:34:5:compute_pid	5
+../Core/Add/Motor_Control/Src/Motor_Control.c:58:6:motorTraduction	2
+../Core/Add/Motor_Control/Src/Motor_Control.c:98:6:setMotor	5
+../Core/Add/Motor_Control/Src/Motor_Control.c:123:6:setDirection	5
+../Core/Add/Motor_Control/Src/Motor_Control.c:154:6:Set_PWM_DutyCycle	6

@@ -1,8 +1,0 @@
-../Core/Src/gnss.c:44:10:geoToUTM	136	static
-../Core/Src/gnss.c:87:8:distanceUTM	16	static
-../Core/Src/gnss.c:92:6:removeOutliers	96	static
-../Core/Src/gnss.c:112:8:perpendicularDistance	96	static
-../Core/Src/gnss.c:136:6:douglasPeucker	128	static
-../Core/Src/gnss.c:158:6:simplifyTrack	48	static
-../Core/Src/gnss.c:178:10:utmToGeo	176	static
-../Core/Src/gnss.c:220:6:processGNSS	72	static

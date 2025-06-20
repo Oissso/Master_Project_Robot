@@ -1,0 +1,3 @@
+../Core/Src/gnss_conversion.c:12:10:geoToUTM	160	static
+../Core/Src/gnss_conversion.c:35:10:utmToGeo	256	static
+../Core/Src/gnss_conversion.c:69:8:distanceUTM	16	static

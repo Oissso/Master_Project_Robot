@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 extern I2C_HandleTypeDef hi2c1;
-#define PCF8574_ADDRESS (0x38 << 1)  // Adresse I2C correcte
+#define PCF8574_ADDRESS (0x39 << 1)  // Adresse I2C correcte
 
 bool GPIO_EXTENDER_ProcessCommand(uint8_t *data) {
     uint8_t TxData = *data;  // Convertir la donnée en octet unique

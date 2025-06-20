@@ -37,18 +37,21 @@ bool BLE_ProcessCommand(uint8_t *data, uint8_t length) {
     cJSON *forward = cJSON_GetObjectItem(root, "forward");
     cJSON *spine = cJSON_GetObjectItem(root, "spine");
     cJSON *GPS_mode = cJSON_GetObjectItem(root, "GPS_mode");
+    cJSON *p = cJSON_GetObjectItem(root, "p");
+    cJSON *i = cJSON_GetObjectItem(root, "i");
+    cJSON *d = cJSON_GetObjectItem(root, "d");
 
-    if (!cJSON_IsNumber(forward) || !cJSON_IsNumber(spine) || !cJSON_IsNumber(GPS_mode)) {
+    if (!cJSON_IsNumber(forward) || !cJSON_IsNumber(spine) || !cJSON_IsNumber(GPS_mode) || !cJSON_IsNumber(p) || !cJSON_IsNumber(i) || !cJSON_IsNumber(d)) {
         printf("⚠️ Un ou plusieurs champs ne sont pas des nombres\n");
         cJSON_Delete(root);
         return false;
     }
 
-    printf("Moteurs : forward=%d, spine=%d, GPS_mode=%d\n",
-           forward->valueint, spine->valueint, GPS_mode->valueint);
+    printf("Moteurs : forward=%d, spine=%d, GPS_mode=%d, p=%d, i=%d, d=%d\n",
+           forward->valueint, spine->valueint, GPS_mode->valueint, p->valuedouble, i->valuedouble, d->valuedouble);
 
     cJSON_Delete(root);
 
-    motorTraduction(forward->valueint, spine->valueint);
+    motorTraduction(forward->valueint, spine->valueint, p->valuedouble, i->valuedouble, d->valuedouble);
     return true;
 }

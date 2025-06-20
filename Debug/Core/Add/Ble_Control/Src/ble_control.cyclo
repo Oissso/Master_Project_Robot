@@ -1,2 +1,2 @@
 ../Core/Add/Ble_Control/Src/ble_control.c:12:6:check_command	2
-../Core/Add/Ble_Control/Src/ble_control.c:21:6:BLE_ProcessCommand	5
+../Core/Add/Ble_Control/Src/ble_control.c:21:6:BLE_ProcessCommand	8

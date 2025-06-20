@@ -1,0 +1,4 @@
+../Core/Src/gnss_filter.c:11:5:removeOutliers	5
+../Core/Src/gnss_filter.c:25:15:perpendicularDist	1
+../Core/Src/gnss_filter.c:35:13:dpSimplify	6
+../Core/Src/gnss_filter.c:53:5:simplifyTrack	3
